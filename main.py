@@ -10,7 +10,7 @@ app.register_blueprint(image_bp)
 
 @app.route("/add", methods=["POST"])
 
-def add_numbers():
+def give_response():
     data = request.get_json()
     try:
         var1 = data.get("num1", 0)
