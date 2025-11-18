@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from google import genai
-from flask_cors import CORS  # allows frontend to connect from a different port
-import markdown
+# image_routes.py
+from flask import Blueprint, request, jsonify
 import os
 
 # Try to import python-dotenv's loader; if unavailable, provide a small fallback
@@ -24,36 +22,7 @@ except Exception:
 
 
 load_dotenv()  # Load environment variables from .env file (or fallback)
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-
-# Initialize genai client if key is present; otherwise provide a safe stub client
-def _make_stub_client():
-    class _Models:
-        def generate_content(self, model=None, contents=None, **kwargs):
-            class _R:
-                pass
-            r = _R()
-            r.text = (
-                "[stub] GEMINI_API_KEY not configured. "
-                "Install/configure the key to call the real API.\n\n"
-                f"Prompt received:\n{contents}"
-            )
-            return r
-
-    class _Client:
-        def __init__(self):
-            self.models = _Models()
-
-    return _Client()
-
-try:
-    if GEMINI_API_KEY:
-        client = genai.Client(api_key=GEMINI_API_KEY)  # real client
-    else:
-        client = _make_stub_client()
-except Exception:
-    # If genai import or client creation fails for any reason, fall back to stub
-    client = _make_stub_client()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))  # or service account creds
 
 # Ensure the installed 'dotenv' module (if present but not python-dotenv) exposes
 # the minimal API Flask expects (find_dotenv and load_dotenv). This avoids
@@ -90,36 +59,11 @@ try:
 except Exception:
     pass
 
-app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    original = ''
-    response = None
-    if request.method == 'POST':
-        original = request.form.get('input_text', '')
-        prompt = f"Answer my question Respond using clean markdown formatting.: {original}"
-        try:
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt
-            )
-            markdown_text = response.text
+def give_response(Query):
+    prompt = f"Answer my question: {Query}"
+    response = client.models.generate_content(
+    model="gemini-2.5-flash", contents=prompt
+    )
 
-            # Convert markdown → HTML
-            output_text = markdown_text.markdown(
-                markdown_text,
-                extensions=["fenced_code", "tables", "nl2br"]
-            )
-        except Exception as e:
-            # keep response as None and show the error message in template
-            response = type('E', (), {'text': str(e)})()
-
-    return render_template('index.html',
-                           input_text=original,
-                           output_text=output_text)
-
-if __name__ == '__main__':
-    # Use PORT env var when present to avoid collisions with default 5000.
-    port = int(os.environ.get('PORT', os.environ.get('FLASK_RUN_PORT', 5001)))
-    app.run(debug=True, port=port)
+    return response.text

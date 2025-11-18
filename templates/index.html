@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — Flask String App{% endblock %}
+
+{% block content %}
+<section class="card">
+    
+    {% if output_text is not none %}
+    <div class="result">
+    <h3>Response</h3>
+    <pre class="output">{{ output_text }}</pre>
+    </div>
+
+<form method="post" class="form" autocomplete="off">
+<div class="controls">
+<div class="liquid-search">
+    <input id="input_text" name="input_text" type= 'text' rows="4" placeholder="Type something..."></textarea>
+    <button type="submit" class="btn">Ask!</button>
+    <button type="button" class="btn ghost" onclick="document.getElementById('input_text').value = ''">Clear</button>
+  </div>
+
+</div>
+</form>
+{% endif %}
+</section>
+{% endblock %}

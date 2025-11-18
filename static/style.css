@@ -1,0 +1,78 @@
+:root {
+--bg: black; /* Very Dark Gray */
+--helpme: #F5F3F5; /* Near White */
+--text: #F5F3F5; /* Very Dark Gray */
+--muted: #576CA8; /* Medium Blue */
+--primary: #274690; /* Dark Blue */
+--secondary: #576CA8; /* Medium Blue */
+--accent: #274690; /* Dark Blue */
+--card: #070a2b; /* White card background */
+--glass: rgba(39,70,144,0.08);
+}
+
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--text); margin:0; line-height:1.5}
+.container{max-width:1180px; margin:28px auto; padding:0 20px}
+.site-header{padding:28px 0 12px}
+.brand{margin:0; font-size:1.6rem; color:var(--primary)}
+.tag{margin:6px 0 0; color:var(--muted)}
+.card{background:var(--card); border-radius:12px; padding:22px; box-shadow:0 6px 18px rgba(15,23,42,0.06); border:1px solid rgba(15,23,42,0.04)}
+.label{display:block; font-weight:600; margin-bottom:8px}
+
+.liquid-search {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.37);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.6s;
+  }
+.liquid-search:hover {
+    padding: 1rem 1.5rem;
+    width: 50%;
+  }
+  /* Search input */
+  .liquid-search input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  
+  
+  /* Search button */
+  .liquid-search button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: 0.3s;
+  }
+
+  .liquid-search button:hover {
+    background: rgba(255,255,255,0.35);
+  }
+
+.btn{background:var(--primary); color:white; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600; box-shadow:0 6px 12px var(--glass)}
+.btn.ghost{background:transparent; color:var(--secondary); border:1px solid rgba(87,108,168,0.08)}
+.result{margin-top:18px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(87,108,168,0.04), transparent); border:1px solid rgba(39,70,144,0.06)}
+.output{white-space:pre-wrap; margin:0; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; padding:8px; background:var(--bg); border-radius:8px}
+.site-footer{padding:20px 0; color:var(--muted); text-align:center}
+@media (max-width:520px){.container{padding:0 14px}.brand{font-size:1.25rem}}
