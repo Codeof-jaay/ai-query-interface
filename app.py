@@ -95,6 +95,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     original = ''
+    output_text = ''
     response = None
     if request.method == 'POST':
         original = request.form.get('input_text', '')
@@ -107,7 +108,7 @@ def index():
             markdown_text = response.text
 
             # Convert markdown → HTML
-            output_text = markdown_text.markdown(
+            output_text = markdown.markdown(
                 markdown_text,
                 extensions=["fenced_code", "tables", "nl2br"]
             )

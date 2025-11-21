@@ -12,11 +12,11 @@
 
 *{box-sizing:border-box}
 body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--text); margin:0; line-height:1.5}
-.container{max-width:1180px; margin:28px auto; padding:0 20px}
+.container{max-width:1180px; margin:28px auto; padding: 0px}
 .site-header{padding:28px 0 12px}
-.brand{margin:0; font-size:1.6rem; color:var(--primary)}
-.tag{margin:6px 0 0; color:var(--muted)}
-.card{background:var(--card); border-radius:12px; padding:22px; box-shadow:0 6px 18px rgba(15,23,42,0.06); border:1px solid rgba(15,23,42,0.04)}
+.brand{margin:0; font-size:1.6rem; color:var(--helpme)}
+.tag{margin:6px 0 0; color:var(--helpme)}
+.card{background:var(--primary); border-radius:12px; padding:22px; box-shadow:0 6px 18px rgba(15,23,42,0.06); border:1px solid rgba(15,23,42,0.04)}
 .label{display:block; font-weight:600; margin-bottom:8px}
 
 .liquid-search {
@@ -71,8 +71,8 @@ body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica
   }
 
 .btn{background:var(--primary); color:white; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600; box-shadow:0 6px 12px var(--glass)}
-.btn.ghost{background:transparent; color:var(--secondary); border:1px solid rgba(87,108,168,0.08)}
+.btn.ghost{background:transparent; color:var(--helpme); border:1px solid rgba(87,108,168,0.08)}
 .result{margin-top:18px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(87,108,168,0.04), transparent); border:1px solid rgba(39,70,144,0.06)}
-.output{white-space:pre-wrap; margin:0; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; padding:8px; background:var(--bg); border-radius:8px}
+.output{white-space:pre-wrap; margin:0; font-family:'Times New Roman', Times, serif SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; padding:8px; background:var(--bg); border-radius:8px}
 .site-footer{padding:20px 0; color:var(--muted); text-align:center}
 @media (max-width:520px){.container{padding:0 14px}.brand{font-size:1.25rem}}

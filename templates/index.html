@@ -8,18 +8,26 @@
     {% if output_text is not none %}
     <div class="result">
     <h3>Response</h3>
-    <pre class="output">{{ output_text }}</pre>
+    <pre class="output">{{ output_text|safe }}</pre>
     </div>
 
 <form method="post" class="form" autocomplete="off">
 <div class="controls">
 <div class="liquid-search">
     <input id="input_text" name="input_text" type= 'text' rows="4" placeholder="Type something..."></textarea>
-    <button type="submit" class="btn">Ask!</button>
-    <button type="button" class="btn ghost" onclick="document.getElementById('input_text').value = ''">Clear</button>
+    <button type="submit" class="btn" >Ask!</button>
+    
   </div>
 
 </div>
+<script>
+    form.addEventListener("submit", () => {
+        setTimeout(() => {
+            textarea.value = "";
+        }, 50);
+    });
+</script>
+
 </form>
 {% endif %}
 </section>
